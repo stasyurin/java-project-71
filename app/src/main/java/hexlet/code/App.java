@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -8,6 +9,7 @@ import picocli.CommandLine.Parameters;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
@@ -29,17 +31,18 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        String file1Content = fileContent(filePath1);
-        String file2Content = fileContent(filePath2);
+        var file1Data = fileData(filePath1);
+        var file2Data = fileData(filePath2);
 
         return 0;
     }
 
-    private String fileContent(String filePath) throws Exception {
+    private Map<String, Object> fileData(String filePath) throws Exception {
         Path path = Paths.get(filePath).toAbsolutePath().normalize();
         if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
         }
-        return Files.readString(path);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(path.toFile(), Map.class);
     }
 }
