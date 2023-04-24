@@ -13,8 +13,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Build with Gradle
+      - name: checkstyleMain
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: build
-          build-root-directory: app
+          arguments: checkstyleMain
+      - name: checkstyleTest
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: checkstyleTest
