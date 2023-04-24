@@ -68,8 +68,8 @@ public class Differ {
         return mapper.readValue(path.toFile(), Map.class);
     }
 
-    public static SortedMap<String, String> statuses(Map<String, Object> map1, Map<String, Object> map2) {
-        SortedMap<String, String> result = new TreeMap<>();
+    public static SortedMap<String,String> statuses(Map<String, Object> map1, Map<String, Object> map2) {
+        SortedMap<String,String> result = new TreeMap<>();
         for (var key : map1.keySet()) {
             if (map2.get(key) == null) {
                 result.put(key, "deleted");
