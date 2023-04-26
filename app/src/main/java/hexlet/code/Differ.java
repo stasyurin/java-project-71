@@ -10,7 +10,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Differ {
-    private static final Map<String, Character> statusesSymbols = Map.of(
+    private static final Map<String, Character> STATUSES_SYMBOLS = Map.of(
             "added", '+',
             "deleted", '-',
             "unchanged", ' ');
@@ -25,8 +25,8 @@ public class Differ {
         sb.append('\n');
         for (var kv : statuses.entrySet()) {
             sb.append("  ");
-            if (statusesSymbols.containsKey(kv.getValue())) {
-                sb.append(statusesSymbols.get(kv.getValue()));
+            if (STATUSES_SYMBOLS.containsKey(kv.getValue())) {
+                sb.append(STATUSES_SYMBOLS.get(kv.getValue()));
                 sb.append(" ");
                 sb.append(kv.getKey());
                 sb.append(": ");
