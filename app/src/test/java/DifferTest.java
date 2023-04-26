@@ -13,7 +13,7 @@ public class DifferTest {
                 + "  - timeout: 50\n"
                 + "  + timeout: 20\n"
                 + "  + verbose: true\n"
-                + "} ";
+                + "}";
         var actual = Differ.generate("./src/test/resources/file1.json", "./src/test/resources/file2.json");
         assertThat(actual).isEqualTo(expected);
     }
