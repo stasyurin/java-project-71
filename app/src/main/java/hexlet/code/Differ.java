@@ -10,6 +10,10 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Differ {
+    private static final Map<String, Character> statusesSymbols = Map.of(
+            "added", '+',
+            "deleted", '-',
+            "unchanged", ' ');
 
     public static String generate(String filePath1, String filePath2) throws Exception {
         var file1Data = fileData(filePath1);
@@ -21,20 +25,17 @@ public class Differ {
         sb.append('\n');
         for (var kv : statuses.entrySet()) {
             sb.append("  ");
-            if (kv.getValue().equals("unchanged")) {
-                sb.append("  ");
+            if (statusesSymbols.containsKey(kv.getValue())) {
+                sb.append(statusesSymbols.get(kv.getValue()));
+                sb.append(" ");
                 sb.append(kv.getKey());
                 sb.append(": ");
+            }
+            if (kv.getValue().equals("unchanged")) {
                 sb.append(file1Data.get(kv.getKey()));
             } else if (kv.getValue().equals("added")) {
-                sb.append("+ ");
-                sb.append(kv.getKey());
-                sb.append(": ");
                 sb.append(file2Data.get(kv.getKey()));
             } else if (kv.getValue().equals("deleted")) {
-                sb.append("- ");
-                sb.append(kv.getKey());
-                sb.append(": ");
                 sb.append(file1Data.get(kv.getKey()));
             } else if (kv.getValue().equals("changed")) {
                 sb.append("- ");
