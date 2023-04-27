@@ -1,9 +1,53 @@
 import hexlet.code.Differ;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DifferTest {
+public final class DifferTest {
+    @BeforeEach
+    void createFile1() throws Exception {
+        List<String> content = Arrays.asList(
+                "{",
+                "  \"host\": \"hexlet.io\",",
+                "  \"timeout\": 50,",
+                "  \"proxy\": \"123.234.53.22\",",
+                "  \"follow\": false",
+                "}");
+        Path path = Paths.get("./src/test/resources/file1.json");
+        Files.write(path, content);
+    }
+    @BeforeEach
+    void createFile2() throws Exception {
+        List<String> content = Arrays.asList(
+                "{",
+                "  \"timeout\": 20,",
+                "  \"verbose\": true,",
+                "  \"host\": \"hexlet.io\"",
+                "}");
+        Path path = Paths.get("./src/test/resources/file2.json");
+        Files.write(path, content);
+    }
+    @BeforeEach
+    void createEmptyFile1() throws Exception {
+        List<String> content = Arrays.asList("{}");
+        Path path = Paths.get("./src/test/resources/empty1.json");
+        Files.write(path, content);
+    }
+    @BeforeEach
+    void createEmptyFile2() throws Exception {
+        List<String> content = Arrays.asList("{}");
+        Path path = Paths.get("./src/test/resources/empty2.json");
+        Files.write(path, content);
+    }
+
     @Test
     void testCommonCase() throws Exception {
         var expected = "{\n"
@@ -23,5 +67,14 @@ public class DifferTest {
         var expected = "{}";
         var actual = Differ.generate("./src/test/resources/empty1.json", "./src/test/resources/empty2.json");
         assertThat(actual).isEqualTo(expected);
+    }
+
+
+    @AfterEach
+    void removeFiles() throws Exception {
+        Files.deleteIfExists(Paths.get("./src/test/resources/file1.json"));
+        Files.deleteIfExists(Paths.get("./src/test/resources/file2.json"));
+        Files.deleteIfExists(Paths.get("./src/test/resources/empty1.json"));
+        Files.deleteIfExists(Paths.get("./src/test/resources/empty2.json"));
     }
 }
