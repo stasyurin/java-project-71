@@ -20,6 +20,10 @@ public class Differ {
         var file2Data = fileData(filePath2);
         var statuses = statuses(file1Data, file2Data);
 
+        if (statuses.isEmpty()) {
+            return "{}";
+        }
+
         var sb = new StringBuilder();
         sb.append('{');
         sb.append('\n');

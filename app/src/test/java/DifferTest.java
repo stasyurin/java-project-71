@@ -17,4 +17,11 @@ public class DifferTest {
         var actual = Differ.generate("./src/test/resources/file1.json", "./src/test/resources/file2.json");
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void testEmptyJSON() throws Exception {
+        var expected = "{}";
+        var actual = Differ.generate("./src/test/resources/empty1.json", "./src/test/resources/empty2.json");
+        assertThat(actual).isEqualTo(expected);
+    }
 }
