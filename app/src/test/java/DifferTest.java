@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifferTest {
     @Test
-    void test1() throws Exception {
+    void testCommonCase() throws Exception {
         var expected = "{\n"
                 + "  - follow: false\n"
                 + "    host: hexlet.io\n"
