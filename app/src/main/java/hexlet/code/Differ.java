@@ -28,16 +28,18 @@ public class Differ {
         var sb = new StringBuilder();
         sb.append('{');
         sb.append('\n');
-        for (var kv : keyStatuses.entrySet()) {
-            appendBlock(sb, kv.getKey(), kv.getValue(), file1Data, file2Data);
+        for (var keyStatus : keyStatuses.entrySet()) {
+            appendBlock(sb, keyStatus, file1Data, file2Data);
         }
         sb.append('}');
 
         return sb.toString();
     }
 
-    private static void appendBlock(StringBuilder sb, String key, String status, Map<String, Object> file1Data,
-                                    Map<String, Object> file2Data) throws Exception {
+    private static void appendBlock(StringBuilder sb, Map.Entry<String, String> keyStatus,
+                                    Map<String, Object> file1Data, Map<String, Object> file2Data) throws Exception {
+        var key = keyStatus.getKey();
+        var status = keyStatus.getValue();
         if (status.equals("unchanged")) {
             appendLine(sb, ' ', key, file1Data.get(key).toString());
         } else if (status.equals("added")) {
