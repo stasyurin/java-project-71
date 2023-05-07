@@ -27,7 +27,7 @@ public final class DifferTest {
             //...
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage())
             //e.printStackTrace();
         }
     }
@@ -45,7 +45,7 @@ public final class DifferTest {
             //...
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage())
             //e.printStackTrace();
         }
     }
@@ -58,7 +58,7 @@ public final class DifferTest {
             //...
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage())
             //e.printStackTrace();
         }
     }
@@ -71,7 +71,7 @@ public final class DifferTest {
             //...
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage())
             //e.printStackTrace();
         }
     }
