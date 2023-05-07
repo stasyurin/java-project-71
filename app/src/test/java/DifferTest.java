@@ -22,7 +22,14 @@ public final class DifferTest {
                 "  \"follow\": false",
                 "}");
         Path path = Paths.get("./src/test/resources/file1.json");
-        Files.write(path, content);
+        try {
+            Files.write(path, content);
+            //...
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage())
+            //e.printStackTrace();
+        }
     }
     @BeforeEach
     void createFile2() throws Exception {
@@ -33,19 +40,40 @@ public final class DifferTest {
                 "  \"host\": \"hexlet.io\"",
                 "}");
         Path path = Paths.get("./src/test/resources/file2.json");
-        Files.write(path, content);
+        try {
+            Files.write(path, content);
+            //...
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage())
+            //e.printStackTrace();
+        }
     }
     @BeforeEach
     void createEmptyFile1() throws Exception {
         List<String> content = Arrays.asList("{}");
         Path path = Paths.get("./src/test/resources/empty1.json");
-        Files.write(path, content);
+        try {
+            Files.write(path, content);
+            //...
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage())
+            //e.printStackTrace();
+        }
     }
     @BeforeEach
     void createEmptyFile2() throws Exception {
         List<String> content = Arrays.asList("{}");
         Path path = Paths.get("./src/test/resources/empty2.json");
-        Files.write(path, content);
+        try {
+            Files.write(path, content);
+            //...
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage())
+            //e.printStackTrace();
+        }
     }
 
     @Test
