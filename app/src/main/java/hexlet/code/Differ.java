@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -75,19 +77,20 @@ public class Differ {
 
     public static SortedMap<String, String> keyStatuses(Map<String, Object> map1, Map<String, Object> map2) {
         SortedMap<String, String> keyStatuses = new TreeMap<>();
-        for (var key : map1.keySet()) {
-            if (map2.get(key) == null) {
+        var commonKeySet = new HashSet<String>();
+        commonKeySet.addAll(map1.keySet());
+        commonKeySet.addAll(map2.keySet());
+        for (var key : commonKeySet) {
+            if (map1.containsKey(key) && !map2.containsKey(key)) {
                 keyStatuses.put(key, "deleted");
-            } else {
-                keyStatuses.put(key, "unchanged");
-            }
-        }
-        for (var key : map2.keySet()) {
-            var map1Val = map1.get(key);
-            if (map1Val == null) {
+            } else if (!map1.containsKey(key) && map2.containsKey(key)) {
                 keyStatuses.put(key, "added");
-            } else if (!map1Val.equals(map2.get(key))) {
-                keyStatuses.put(key, "changed");
+            } else if (map1.containsKey(key) && map2.containsKey(key)) {
+                if (Objects.equals(map1.get(key), map2.get(key))) {
+                    keyStatuses.put(key, "unchanged");
+                } else {
+                    keyStatuses.put(key, "changed");
+                }
             }
         }
         return keyStatuses;
