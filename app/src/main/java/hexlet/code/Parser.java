@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
@@ -22,7 +23,11 @@ public class Parser {
         } else {
             throw new Exception("unknown file extension");
         }
-        return mapper.readValue(file, Map.class);
+        try {
+            return mapper.readValue(file, Map.class);
+        } catch (Exception e) {
+            return new HashMap<>();
+        }
     }
 
 }

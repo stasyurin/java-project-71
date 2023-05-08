@@ -39,4 +39,11 @@ public final class DifferTest {
         var actual = Differ.generate("./src/test/resources/file1.yml", "./src/test/resources/file2.yml");
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void testEmptyYMLYML() throws Exception {
+        var expected = "{}";
+        var actual = Differ.generate("./src/test/resources/empty1.yml", "./src/test/resources/empty2.yml");
+        assertThat(actual).isEqualTo(expected);
+    }
 }
