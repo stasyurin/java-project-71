@@ -13,4 +13,10 @@ Choose 2 files and see the differences between them.
 
 ## Demo
 
+### JSON
+
 [![asciicast](https://asciinema.org/a/lzqGqaWWhtPYD5z8v6Gq41lFf.svg)](https://asciinema.org/a/lzqGqaWWhtPYD5z8v6Gq41lFf)
+
+### YAML
+
+[![asciicast](https://asciinema.org/a/816SugNdy5Zrs4DwBBSnytX7p.svg)](https://asciinema.org/a/816SugNdy5Zrs4DwBBSnytX7p)
