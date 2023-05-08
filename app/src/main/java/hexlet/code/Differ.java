@@ -86,7 +86,8 @@ public class Differ {
         return keyStatuses;
     }
 
-    private static void putKeyStatus(SortedMap<String, String> keyStatuses, String key, Map<String, Object> map1, Map<String, Object> map2) {
+    private static void putKeyStatus(SortedMap<String, String> keyStatuses, String key, Map<String, Object> map1,
+                                     Map<String, Object> map2) {
         if (!map1.containsKey(key)) {
             keyStatuses.put(key, "added");
         } else if (!map2.containsKey(key)) {
