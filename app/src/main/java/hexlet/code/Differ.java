@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -71,8 +69,7 @@ public class Differ {
         if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
         }
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(path.toFile(), Map.class);
+        return Parser.parse(path.toFile());
     }
 
     public static SortedMap<String, String> keyStatuses(Map<String, Object> map1, Map<String, Object> map2) {
