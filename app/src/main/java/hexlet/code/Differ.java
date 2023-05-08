@@ -81,18 +81,23 @@ public class Differ {
         commonKeySet.addAll(map1.keySet());
         commonKeySet.addAll(map2.keySet());
         for (var key : commonKeySet) {
-            if (map1.containsKey(key) && !map2.containsKey(key)) {
-                keyStatuses.put(key, "deleted");
-            } else if (!map1.containsKey(key) && map2.containsKey(key)) {
-                keyStatuses.put(key, "added");
-            } else if (map1.containsKey(key) && map2.containsKey(key)) {
-                if (Objects.equals(map1.get(key), map2.get(key))) {
-                    keyStatuses.put(key, "unchanged");
-                } else {
-                    keyStatuses.put(key, "changed");
-                }
-            }
+            putKeyStatus(keyStatuses, key, map1, map2);
         }
         return keyStatuses;
+    }
+
+    private static void putKeyStatus(SortedMap<String, String> keyStatuses, String key, Map<String, Object> map1,
+                                     Map<String, Object> map2) {
+        if (map1.containsKey(key) && !map2.containsKey(key)) {
+            keyStatuses.put(key, "deleted");
+        } else if (!map1.containsKey(key) && map2.containsKey(key)) {
+            keyStatuses.put(key, "added");
+        } else if (map1.containsKey(key) && map2.containsKey(key)) {
+            if (Objects.equals(map1.get(key), map2.get(key))) {
+                keyStatuses.put(key, "unchanged");
+            } else {
+                keyStatuses.put(key, "changed");
+            }
+        }
     }
 }
