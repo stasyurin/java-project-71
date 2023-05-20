@@ -46,16 +46,8 @@ public final class DifferTest {
 
     @Test
     void testCommonCaseYML() throws Exception {
-        var expected = "{\n"
-                + "  - follow: false\n"
-                + "    host: hexlet.io\n"
-                + "  - proxy: 123.234.53.22\n"
-                + "  - timeout: 50\n"
-                + "  + timeout: 20\n"
-                + "  + verbose: true\n"
-                + "}";
         var actual = Differ.generate("./src/test/resources/file1.yml", "./src/test/resources/file2.yml");
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE);
     }
 
     @Test
