@@ -41,14 +41,14 @@ public class Differ {
         var key = keyStatus.getKey();
         var status = keyStatus.getValue();
         if (status.equals("unchanged")) {
-            appendLine(sb, ' ', key, file1Data.get(key).toString());
+            appendLine(sb, ' ', key, String.valueOf(file1Data.get(key)));
         } else if (status.equals("added")) {
-            appendLine(sb, '+', key, file2Data.get(key).toString());
+            appendLine(sb, '+', key, String.valueOf(file2Data.get(key)));
         } else if (status.equals("deleted")) {
-            appendLine(sb, '-', key, file1Data.get(key).toString());
+            appendLine(sb, '-', key, String.valueOf(file1Data.get(key)));
         } else if (status.equals("changed")) {
-            appendLine(sb, '-', key, file1Data.get(key).toString());
-            appendLine(sb, '+', key, file2Data.get(key).toString());
+            appendLine(sb, '-', key, String.valueOf(file1Data.get(key)));
+            appendLine(sb, '+', key, String.valueOf(file2Data.get(key)));
         } else {
             throw new Exception("unknown status");
         }
