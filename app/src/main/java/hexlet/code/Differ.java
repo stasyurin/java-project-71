@@ -20,7 +20,7 @@ public class Differ {
             return "{}";
         }
 
-        return Formatter.buildString(file1Data, file2Data, keyStatuses);
+        return Stylish.buildString(file1Data, file2Data, keyStatuses);
     }
 
     private static Map<String, Object> fileData(String filePath) throws Exception {

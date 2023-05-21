@@ -3,7 +3,7 @@ package hexlet.code;
 import java.util.Map;
 import java.util.SortedMap;
 
-public class Formatter {
+public class Stylish {
 
     static String buildString(Map<String, Object> file1Data, Map<String, Object> file2Data,
                               SortedMap<String, String> keyStatuses) throws Exception {
