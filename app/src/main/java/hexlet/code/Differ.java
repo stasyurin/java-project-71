@@ -20,11 +20,7 @@ public class Differ {
             return "{}";
         }
 
-        if (format.equals("stylish")) {
-            return Stylish.buildString(file1Data, file2Data, keyStatuses);
-        } else {
-            throw new Exception("Unknown format: " + format);
-        }
+        return Formatter.format(format, file1Data, file2Data, keyStatuses);
     }
 
     private static Map<String, Object> fileData(String filePath) throws Exception {
