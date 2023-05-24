@@ -11,13 +11,14 @@ import java.util.concurrent.Callable;
         description = "Compares two configuration files and shows a difference.")
 public final class App implements Callable<Integer> {
 
+    public static final String STYLISH = "stylish";
     @Parameters(index = "0", description = "path to first file")
     private String filePath1;
     @Parameters(index = "1", description = "path to second file")
     private String filePath2;
 
     @Option(names = {"-f", "--format"}, description = "output format [default: ${DEFAULT-VALUE}]")
-    private String formatName = "stylish";
+    private String formatName = STYLISH;
 
     public static void main(String[] args) {
         int exitCode = new CommandLine(new App()).execute(args);
