@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public final class DifferTest {
 
-    public static final String EXPECTED_COMMON_CASE = "{\n"
+    public static final String EXPECTED_COMMON_CASE_STYLISH = "{\n"
             + "    chars1: [a, b, c]\n"
             + "  - chars2: [d, e, f]\n"
             + "  + chars2: false\n"
@@ -30,15 +30,30 @@ public final class DifferTest {
             + "  - setting3: true\n"
             + "  + setting3: none\n"
             + "}";
+    public static final String EXPECTED_COMMON_CASE_PLAIN
+            = "Property 'chars2' was updated. From [complex value] to false\n"
+            + "Property 'checked' was updated. From false to true\n"
+            + "Property 'default' was updated. From null to [complex value]\n"
+            + "Property 'id' was updated. From 45 to null\n"
+            + "Property 'key1' was removed\n"
+            + "Property 'key2' was added with value: 'value2'\n"
+            + "Property 'numbers2' was updated. From [complex value] to [complex value]\n"
+            + "Property 'numbers3' was removed\n"
+            + "Property 'numbers4' was added with value: [complex value]\n"
+            + "Property 'obj1' was added with value: [complex value]\n"
+            + "Property 'setting1' was updated. From 'Some value' to 'Another value'\n"
+            + "Property 'setting2' was updated. From 200 to 300\n"
+            + "Property 'setting3' was updated. From true to 'none'\n";
     public static final String EXPECTED_EMPTY = "{}";
     public static final String STYLISH = "stylish";
+    public static final String PLAIN = "plain";
 
     @Test
     void testCommonCaseJSON() throws Exception {
         var actual = Differ.generate("./src/test/resources/file1.json",
                                      "./src/test/resources/file2.json",
                                      STYLISH);
-        assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE);
+        assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE_STYLISH);
     }
 
     @Test
@@ -54,7 +69,7 @@ public final class DifferTest {
         var actual = Differ.generate("./src/test/resources/file1.yml",
                                      "./src/test/resources/file2.yml",
                                      STYLISH);
-        assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE);
+        assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE_STYLISH);
     }
 
     @Test
@@ -63,5 +78,13 @@ public final class DifferTest {
                                      "./src/test/resources/empty2.yml",
                                      STYLISH);
         assertThat(actual).isEqualTo(EXPECTED_EMPTY);
+    }
+
+    @Test
+    void testPlainFormat() throws Exception {
+        var actual = Differ.generate("./src/test/resources/file1.json",
+                                     "./src/test/resources/file2.json",
+                                     PLAIN);
+        assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE_PLAIN);
     }
 }
