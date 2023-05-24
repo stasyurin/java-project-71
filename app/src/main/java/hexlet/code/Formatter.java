@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.formats.Stylish;
+
 import java.util.Map;
 import java.util.SortedMap;
 

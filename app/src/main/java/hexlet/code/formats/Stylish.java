@@ -1,12 +1,12 @@
-package hexlet.code;
+package hexlet.code.formats;
 
 import java.util.Map;
 import java.util.SortedMap;
 
 public class Stylish {
 
-    static String buildString(Map<String, Object> file1Data, Map<String, Object> file2Data,
-                              SortedMap<String, String> keyStatuses) throws Exception {
+    public static String buildString(Map<String, Object> file1Data, Map<String, Object> file2Data,
+                                     SortedMap<String, String> keyStatuses) throws Exception {
         var sb = new StringBuilder();
         sb.append('{');
         sb.append('\n');
