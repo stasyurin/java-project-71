@@ -7,6 +7,10 @@ public class Stylish {
 
     public static String buildString(Map<String, Object> file1Data, Map<String, Object> file2Data,
                                      SortedMap<String, String> keyStatuses) throws Exception {
+        if (keyStatuses.isEmpty()) {
+            return "{}";
+        }
+
         var sb = new StringBuilder();
         sb.append('{');
         sb.append('\n');

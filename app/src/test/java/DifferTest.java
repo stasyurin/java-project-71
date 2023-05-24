@@ -44,7 +44,8 @@ public final class DifferTest {
             + "Property 'setting1' was updated. From 'Some value' to 'Another value'\n"
             + "Property 'setting2' was updated. From 200 to 300\n"
             + "Property 'setting3' was updated. From true to 'none'\n";
-    public static final String EXPECTED_EMPTY = "{}";
+    public static final String EXPECTED_EMPTY_STYLISH = "{}";
+    public static final String EXPECTED_EMPTY_PLAIN = "";
     public static final String STYLISH = "stylish";
     public static final String PLAIN = "plain";
 
@@ -61,7 +62,7 @@ public final class DifferTest {
         var actual = Differ.generate("./src/test/resources/empty1.json",
                                      "./src/test/resources/empty2.json",
                                      STYLISH);
-        assertThat(actual).isEqualTo(EXPECTED_EMPTY);
+        assertThat(actual).isEqualTo(EXPECTED_EMPTY_STYLISH);
     }
 
     @Test
@@ -77,7 +78,7 @@ public final class DifferTest {
         var actual = Differ.generate("./src/test/resources/empty1.yml",
                                      "./src/test/resources/empty2.yml",
                                      STYLISH);
-        assertThat(actual).isEqualTo(EXPECTED_EMPTY);
+        assertThat(actual).isEqualTo(EXPECTED_EMPTY_STYLISH);
     }
 
     @Test
@@ -86,5 +87,13 @@ public final class DifferTest {
                                      "./src/test/resources/file2.json",
                                      PLAIN);
         assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE_PLAIN);
+    }
+
+    @Test
+    void testEmptyPlainFormat() throws Exception {
+        var actual = Differ.generate("./src/test/resources/empty1.json",
+                                     "./src/test/resources/empty2.json",
+                                     PLAIN);
+        assertThat(actual).isEqualTo(EXPECTED_EMPTY_PLAIN);
     }
 }

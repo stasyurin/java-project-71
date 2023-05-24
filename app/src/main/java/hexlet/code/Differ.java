@@ -16,10 +16,6 @@ public class Differ {
         var file2Data = fileData(filePath2);
         var keyStatuses = keyStatuses(file1Data, file2Data);
 
-        if (keyStatuses.isEmpty()) {
-            return "{}";
-        }
-
         return Formatter.format(formatName, file1Data, file2Data, keyStatuses);
     }
 

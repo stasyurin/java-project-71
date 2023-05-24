@@ -8,6 +8,10 @@ import java.util.SortedMap;
 public class Plain {
     public static String buildString(Map<String, Object> file1Data, Map<String, Object> file2Data,
                                      SortedMap<String, String> keyStatuses) throws Exception {
+        if (keyStatuses.isEmpty()) {
+            return "";
+        }
+
         var sb = new StringBuilder();
         for (var keyStatus : keyStatuses.entrySet()) {
             appendBlock(sb, keyStatus, file1Data, file2Data);
