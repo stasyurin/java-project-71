@@ -11,7 +11,7 @@ import java.util.TreeMap;
 
 public class Differ {
 
-    public static String generate(String filePath1, String filePath2) throws Exception {
+    public static String generate(String filePath1, String filePath2, String format) throws Exception {
         var file1Data = fileData(filePath1);
         var file2Data = fileData(filePath2);
         var keyStatuses = keyStatuses(file1Data, file2Data);
@@ -20,7 +20,11 @@ public class Differ {
             return "{}";
         }
 
-        return Stylish.buildString(file1Data, file2Data, keyStatuses);
+        if (format.equals("stylish")) {
+            return Stylish.buildString(file1Data, file2Data, keyStatuses);
+        } else {
+            throw new Exception("Unknown format: " + format);
+        }
     }
 
     private static Map<String, Object> fileData(String filePath) throws Exception {

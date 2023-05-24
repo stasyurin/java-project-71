@@ -31,28 +31,37 @@ public final class DifferTest {
             + "  + setting3: none\n"
             + "}";
     public static final String EXPECTED_EMPTY = "{}";
+    public static final String STYLISH = "stylish";
 
     @Test
     void testCommonCaseJSON() throws Exception {
-        var actual = Differ.generate("./src/test/resources/file1.json", "./src/test/resources/file2.json");
+        var actual = Differ.generate("./src/test/resources/file1.json",
+                                     "./src/test/resources/file2.json",
+                                     STYLISH);
         assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE);
     }
 
     @Test
     void testEmptyJSON() throws Exception {
-        var actual = Differ.generate("./src/test/resources/empty1.json", "./src/test/resources/empty2.json");
+        var actual = Differ.generate("./src/test/resources/empty1.json",
+                                     "./src/test/resources/empty2.json",
+                                     STYLISH);
         assertThat(actual).isEqualTo(EXPECTED_EMPTY);
     }
 
     @Test
     void testCommonCaseYML() throws Exception {
-        var actual = Differ.generate("./src/test/resources/file1.yml", "./src/test/resources/file2.yml");
+        var actual = Differ.generate("./src/test/resources/file1.yml",
+                                     "./src/test/resources/file2.yml",
+                                     STYLISH);
         assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE);
     }
 
     @Test
     void testEmptyYML() throws Exception {
-        var actual = Differ.generate("./src/test/resources/empty1.yml", "./src/test/resources/empty2.yml");
+        var actual = Differ.generate("./src/test/resources/empty1.yml",
+                                     "./src/test/resources/empty2.yml",
+                                     STYLISH);
         assertThat(actual).isEqualTo(EXPECTED_EMPTY);
     }
 }
