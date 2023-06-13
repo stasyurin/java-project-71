@@ -12,12 +12,11 @@ public class Stylish {
         }
 
         var sb = new StringBuilder();
-        sb.append('{');
-        sb.append('\n');
+        sb.append("{\n");
         for (var keyStatus : keyStatuses.entrySet()) {
             appendBlock(sb, keyStatus, file1Data, file2Data);
         }
-        sb.append('}');
+        sb.append("}\n");
 
         return sb.toString();
     }

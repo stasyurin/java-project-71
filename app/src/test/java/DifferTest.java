@@ -29,7 +29,7 @@ public final class DifferTest {
             + "  + setting2: 300\n"
             + "  - setting3: true\n"
             + "  + setting3: none\n"
-            + "}";
+            + "}\n";
     public static final String EXPECTED_COMMON_CASE_PLAIN
             = "Property 'chars2' was updated. From [complex value] to false\n"
             + "Property 'checked' was updated. From false to true\n"
