@@ -16,7 +16,7 @@ public class Stylish {
         for (var keyStatus : keyStatuses.entrySet()) {
             appendBlock(sb, keyStatus, file1Data, file2Data);
         }
-        sb.append("}\n");
+        sb.append("}");
 
         return sb.toString();
     }
