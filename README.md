@@ -20,3 +20,11 @@ Choose 2 files and see the differences between them.
 ### YAML
 
 [![asciicast](https://asciinema.org/a/816SugNdy5Zrs4DwBBSnytX7p.svg)](https://asciinema.org/a/816SugNdy5Zrs4DwBBSnytX7p)
+
+### STYLISH
+
+[![asciicast](https://asciinema.org/a/eTBTv9nVgwg4GSR0rksPtfHRx.svg)](https://asciinema.org/a/eTBTv9nVgwg4GSR0rksPtfHRx)
+
+### PLAIN
+
+[![asciicast](https://asciinema.org/a/OAZiJbI95GfhLuzg8HvZo6uAe.svg)](https://asciinema.org/a/OAZiJbI95GfhLuzg8HvZo6uAe)
