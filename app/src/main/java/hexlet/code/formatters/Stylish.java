@@ -1,4 +1,4 @@
-package hexlet.code.formats;
+package hexlet.code.formatters;
 
 import java.util.Map;
 import java.util.SortedMap;
