@@ -5,7 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public final class DifferTest {
 
-    public static final String EXPECTED_COMMON_CASE_STYLISH = "{\n"
+    public static final String EXPECTED_COMMON_CASE_STYLISH
+            = "{\n"
             + "    chars1: [a, b, c]\n"
             + "  - chars2: [d, e, f]\n"
             + "  + chars2: false\n"
