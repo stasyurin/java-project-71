@@ -225,4 +225,11 @@ public final class DifferTest {
                                      JSON);
         assertThat(actual).isEqualTo(EXPECTED_EMPTY_JSON);
     }
+
+    @Test
+    void testJSONFileEmptyFormat() throws Exception {
+        var actual = Differ.generate("./src/test/resources/file1.json",
+                                     "./src/test/resources/file2.json");
+        assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE_STYLISH);
+    }
 }

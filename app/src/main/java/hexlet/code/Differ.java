@@ -12,6 +12,14 @@ import java.util.TreeMap;
 
 public class Differ {
 
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        var file1Data = fileData(filePath1);
+        var file2Data = fileData(filePath2);
+        var diff = diff(file1Data, file2Data);
+
+        return Formatter.format("stylish", diff);
+    }
+
     public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
         var file1Data = fileData(filePath1);
         var file2Data = fileData(filePath2);
