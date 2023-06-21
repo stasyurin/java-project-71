@@ -6,32 +6,32 @@ import java.util.Map;
 import java.util.SortedMap;
 
 public class Plain {
-    public static String buildString(Map<String, Object> file1Data, Map<String, Object> file2Data,
-                                     SortedMap<String, String> keyStatuses) throws Exception {
-        if (keyStatuses.isEmpty()) {
+    public static String buildString(SortedMap<String, Map> diff) throws Exception {
+        if (diff.isEmpty()) {
             return "";
         }
 
         var sb = new StringBuilder();
-        for (var keyStatus : keyStatuses.entrySet()) {
-            appendBlock(sb, keyStatus, file1Data, file2Data);
+        for (var keyDiff : diff.entrySet()) {
+            appendBlock(sb, keyDiff);
         }
 
         return sb.toString();
     }
 
-    private static void appendBlock(StringBuilder sb, Map.Entry<String, String> keyStatus,
-                                    Map<String, Object> file1Data, Map<String, Object> file2Data) throws Exception {
-        var key = keyStatus.getKey();
-        var status = keyStatus.getValue();
+    private static void appendBlock(StringBuilder sb, Map.Entry<String, Map> keyDiff) throws Exception {
+        var key = keyDiff.getKey();
+        var diff = keyDiff.getValue();
+        var status = diff.get("status");
         if (status.equals("unchanged")) {
             return;
         } else if (status.equals("added")) {
-            appendLine(sb, "added", key, stringValueOf(file2Data.get(key)), stringValueOf(file1Data.get(key)));
+            appendLine(sb, "added", key, stringValueOf(diff.get("value")), stringValueOf(null));
         } else if (status.equals("deleted")) {
-            appendLine(sb, "removed", key, stringValueOf(file2Data.get(key)), stringValueOf(file1Data.get(key)));
+            appendLine(sb, "removed", key, stringValueOf(null), stringValueOf(null));
         } else if (status.equals("changed")) {
-            appendLine(sb, "updated", key, stringValueOf(file2Data.get(key)), stringValueOf(file1Data.get(key)));
+            appendLine(sb, "updated", key, stringValueOf(diff.get("current value")),
+                    stringValueOf(diff.get("previous value")));
         } else {
             throw new Exception("unknown status");
         }

@@ -13,14 +13,13 @@ public class Formatter {
     public static final String PLAIN = "plain";
     public static final String JSON = "json";
 
-    public static String format(String formatName, Map<String, Object> file1Data, Map<String, Object> file2Data,
-                                SortedMap<String, String> keyStatuses) throws Exception {
+    public static String format(String formatName, SortedMap<String, Map> diff) throws Exception {
         if (formatName.equals(STYLISH)) {
-            return Stylish.buildString(file1Data, file2Data, keyStatuses);
+            return Stylish.buildString(diff);
         } else if (formatName.equals(PLAIN)) {
-            return Plain.buildString(file1Data, file2Data, keyStatuses);
+            return Plain.buildString(diff);
         } else if (formatName.equals(JSON)) {
-            return Json.buildString(file1Data, file2Data, keyStatuses);
+            return Json.buildString(diff);
         } else {
             throw new Exception("Unknown format: " + formatName);
         }
