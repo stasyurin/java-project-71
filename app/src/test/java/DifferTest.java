@@ -45,13 +45,110 @@ public final class DifferTest {
             + "Property 'setting1' was updated. From 'Some value' to 'Another value'\n"
             + "Property 'setting2' was updated. From 200 to 300\n"
             + "Property 'setting3' was updated. From true to 'none'\n";
+    public static final String EXPECTED_COMMON_CASE_JSON
+            = "{\n"
+            + "  \"diff\": [\n"
+            + "    {\n"
+            + "      \"name\": \"chars1\",\n"
+            + "      \"status\": \"not changed\",\n"
+            + "      \"previous value\": null,\n"
+            + "      \"current value\": \"[complex value]\"\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"chars2\",\n"
+            + "      \"status\": \"updated\",\n"
+            + "      \"previous value\": \"[complex value]\",\n"
+            + "      \"current value\": false\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"checked\",\n"
+            + "      \"status\": \"updated\",\n"
+            + "      \"previous value\": false,\n"
+            + "      \"current value\": true\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"default\",\n"
+            + "      \"status\": \"updated\",\n"
+            + "      \"previous value\": null,\n"
+            + "      \"current value\": \"[complex value]\"\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"id\",\n"
+            + "      \"status\": \"updated\",\n"
+            + "      \"previous value\": 45,\n"
+            + "      \"current value\": null\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"key1\",\n"
+            + "      \"status\": \"removed\",\n"
+            + "      \"previous value\": \"value1\",\n"
+            + "      \"current value\": null\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"key2\",\n"
+            + "      \"status\": \"added\",\n"
+            + "      \"previous value\": null,\n"
+            + "      \"current value\": \"value2\"\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"numbers1\",\n"
+            + "      \"status\": \"not changed\",\n"
+            + "      \"previous value\": null,\n"
+            + "      \"current value\": \"[complex value]\"\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"numbers2\",\n"
+            + "      \"status\": \"updated\",\n"
+            + "      \"previous value\": \"[complex value]\",\n"
+            + "      \"current value\": \"[complex value]\"\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"numbers3\",\n"
+            + "      \"status\": \"removed\",\n"
+            + "      \"previous value\": \"[complex value]\",\n"
+            + "      \"current value\": null\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"numbers4\",\n"
+            + "      \"status\": \"added\",\n"
+            + "      \"previous value\": null,\n"
+            + "      \"current value\": \"[complex value]\"\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"obj1\",\n"
+            + "      \"status\": \"added\",\n"
+            + "      \"previous value\": null,\n"
+            + "      \"current value\": \"[complex value]\"\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"setting1\",\n"
+            + "      \"status\": \"updated\",\n"
+            + "      \"previous value\": \"Some value\",\n"
+            + "      \"current value\": \"Another value\"\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"setting2\",\n"
+            + "      \"status\": \"updated\",\n"
+            + "      \"previous value\": 200,\n"
+            + "      \"current value\": 300\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"name\": \"setting3\",\n"
+            + "      \"status\": \"updated\",\n"
+            + "      \"previous value\": true,\n"
+            + "      \"current value\": \"none\"\n"
+            + "    }\n"
+            + "  ]\n"
+            + "}";
     public static final String EXPECTED_EMPTY_STYLISH = "{}";
     public static final String EXPECTED_EMPTY_PLAIN = "";
+    public static final String EXPECTED_EMPTY_JSON = "{}";
     public static final String STYLISH = "stylish";
     public static final String PLAIN = "plain";
+    public static final String JSON = "json";
 
     @Test
-    void testCommonCaseJSON() throws Exception {
+    void testJSONFileStylishFormat() throws Exception {
         var actual = Differ.generate("./src/test/resources/file1.json",
                                      "./src/test/resources/file2.json",
                                      STYLISH);
@@ -59,7 +156,7 @@ public final class DifferTest {
     }
 
     @Test
-    void testEmptyJSON() throws Exception {
+    void testJSONFileStylishFormatEmpty() throws Exception {
         var actual = Differ.generate("./src/test/resources/empty1.json",
                                      "./src/test/resources/empty2.json",
                                      STYLISH);
@@ -67,7 +164,7 @@ public final class DifferTest {
     }
 
     @Test
-    void testCommonCaseYML() throws Exception {
+    void testYMLFileStylishFormat() throws Exception {
         var actual = Differ.generate("./src/test/resources/file1.yml",
                                      "./src/test/resources/file2.yml",
                                      STYLISH);
@@ -75,7 +172,7 @@ public final class DifferTest {
     }
 
     @Test
-    void testEmptyYML() throws Exception {
+    void testYMLFileStylishFormatEmpty() throws Exception {
         var actual = Differ.generate("./src/test/resources/empty1.yml",
                                      "./src/test/resources/empty2.yml",
                                      STYLISH);
@@ -83,7 +180,7 @@ public final class DifferTest {
     }
 
     @Test
-    void testPlainFormat() throws Exception {
+    void testJSONFilePlainFormat() throws Exception {
         var actual = Differ.generate("./src/test/resources/file1.json",
                                      "./src/test/resources/file2.json",
                                      PLAIN);
@@ -91,10 +188,26 @@ public final class DifferTest {
     }
 
     @Test
-    void testEmptyPlainFormat() throws Exception {
+    void testJSONFilePlainFormatEmpty() throws Exception {
         var actual = Differ.generate("./src/test/resources/empty1.json",
                                      "./src/test/resources/empty2.json",
                                      PLAIN);
         assertThat(actual).isEqualTo(EXPECTED_EMPTY_PLAIN);
+    }
+
+    @Test
+    void testJSONFileJSONFormat() throws Exception {
+        var actual = Differ.generate("./src/test/resources/file1.json",
+                                     "./src/test/resources/file2.json",
+                                     JSON);
+        assertThat(actual).isEqualTo(EXPECTED_COMMON_CASE_JSON);
+    }
+
+    @Test
+    void testJSONFileJSONFormatEmpty() throws Exception {
+        var actual = Differ.generate("./src/test/resources/empty1.json",
+                                     "./src/test/resources/empty2.json",
+                                     JSON);
+        assertThat(actual).isEqualTo(EXPECTED_EMPTY_JSON);
     }
 }
